@@ -21,14 +21,19 @@ exports.registerRoute = function (hook_name, args, cb) {
         pads=padManager.listAllPads().padIDs;
         callback();
       },
+
       function(callback){
-        pads.forEach(function(padID){
+        async.forEach(pads, function(padID, callback){
           if(padID[0] == letter || padID[0] == letter.toUpperCase()){
             data.push(padID);
           }
+          callback();
+        },
+        function(err){
+          callback();
         });
-        callback();
       },
+
       function(callback){
         var render_args = {
           errors: [],
