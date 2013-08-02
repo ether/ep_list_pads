@@ -16,6 +16,10 @@
     "log4js": "0.5.x",
     "ueberDB": ">= 0.1.9"
   },
+  "repository" : {
+   "type" : "git",
+   "url"  : "https://github.com/JohnMcLear/ep_list_pads.git"
+  },
   "readmeFilename": "README.md",
   "_id": "ep_list_pads@0.0.1",
   "dist": {
