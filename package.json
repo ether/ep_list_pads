@@ -1,6 +1,6 @@
 {
   "name": "ep_list_pads",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "List Pads on the Index Page",
   "author": {
     "name": "John McLear",
@@ -13,7 +13,6 @@
   "dependencies": {
     "ep_public_view":"*",
     "regexp-quote": "*",
-    "log4js": "0.5.x",
     "ueberDB": ">= 0.1.9"
   },
   "repository" : {
@@ -27,3 +26,4 @@
   },
   "_from": "ep_list_pads"
 }
+  
