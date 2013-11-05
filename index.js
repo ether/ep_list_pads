@@ -16,21 +16,18 @@ exports.registerRoute = function (hook_name, args, cb) {
     var pads = [];
     var data = [];
 
-    async.series([
+    async.waterfall([
       function(callback){
-        padManager.listAllPads(err, pads){
-          async.forEach(pads, function(padID, callback){
-            if(padID[0] == letter || padID[0] == letter.toUpperCase()){
-              data.push(padID);
-            }
-            callback();
-          },
-          function(err){
-            callback();
-          });
-        }
+	    padManager.listAllPads(callback)
       },
-
+      function (pads, callback) {
+	    async.forEach(pads.padIDs, function(padID, callback) {
+          if(padID[0] == letter || padID[0] == letter.toUpperCase()){
+            data.push(padID);
+          }
+	    });
+        callback();
+      },
       function(callback){
         var render_args = {
           errors: [],
