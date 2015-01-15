@@ -1,0 +1,35 @@
+language: node_js
+node_js:
+  - "0.8"
+  - "0.10"
+
+env:
+  - CASSANDRA_VERSION=1.1.12
+  - CASSANDRA_VERSION=1.2.14
+  - CASSANDRA_VERSION=2.0.4
+
+before_install:
+  - sudo apt-get install libjna-java
+  - sudo apt-get install python-support
+  - sudo easy_install pyYaml
+  - sudo easy_install pip
+  - sudo pip install ccm
+
+install:
+  - ccm create test -v $CASSANDRA_VERSION
+  - ccm populate -n 1
+  - ccm start
+  - npm install
+
+script:
+  - make test
+
+after_script:
+  - ccm stop
+  - ccm remove
+
+notifications:
+  email: false
+  campfire:
+    secure: "24WluBFSwNgmXL+ulZrwEQojuHdCbTQZ5mdLTo5gOsm6j8h6AIjU/U+ubHcu\nNaEufjkCuGwr4LWTInFEjwe+kq6SqiXCstJ8BHu/eM1IYwKbHO9U23WEemVF\n6vWHoNVHWdQeUTLBZRaqYMp07c32q5Xsn5LREXeO6I8f42l0yac="
+
