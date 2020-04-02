@@ -33,32 +33,3 @@ exports.registerRoute = function (hook_name, args, cb) {
     res.send( eejs.require("ep_list_pads/templates/pads.html", render_args) );
   });
 };
-
-
-/*
-    async.waterfall([
-      async.forEach(pads.padIDs, function(padID, callback) {
-        // handle numbers first IE 2014Monday PadIds
-        if(letter === "hash"){
-          var i = 0
-          while(i<10){
-            if(padID[0] == i){
-              data.push(padID);
-            }
-            i++;
-          }
-        }else{
-          if(padID[0] == letter || padID[0] == letter.toUpperCase()){
-            data.push(padID);
-          }
-        }
-      });
-      callback();
-    },
-    function(callback){
-      callback();
-    }
-
-    ]);
-*/
-
