@@ -10,46 +10,55 @@ exports.eejsBlock_indexWrapper = function (hook_name, args, cb) {
 }
 
 exports.registerRoute = function (hook_name, args, cb) {
-  args.app.get('/list/:letter(*)', function(req, res) {
 
-    var letter = req.params.letter;
-    var pads = [];
+  args.app.get('/list/:letter(*)', async function(req, res) {
+
     var data = [];
+    var letter = req.params.letter.toLowerCase();
+    var pads = await padManager.listAllPads()
+    pads = pads.padIDs;
 
-    async.waterfall([
-      function(callback){
-        padManager.listAllPads(callback)
-      },
-      function (pads, callback) {
-        async.forEach(pads.padIDs, function(padID, callback) {
-          // handle numbers first IE 2014Monday PadIds
-          if(letter === "hash"){
-            var i = 0
-            while(i<10){
-              if(padID[0] == i){
-                data.push(padID);
-              }
-              i++;
-            }
-          }else{
-            if(padID[0] == letter || padID[0] == letter.toUpperCase()){
-              data.push(padID);
-            }
-          }
-        });
-        callback();
-      },
-      function(callback){
-        var render_args = {
-          errors: [],
-          pads: data,
-          letter: letter
-        };
-        res.send( eejs.require("ep_list_pads/templates/pads.html", render_args) );
-        callback();
-      }
-    ]);
+    var render_args = {};
 
+    if(letter === "hash"){
+      // all others.
+      render_args.pads = pads.filter((pad)=> pad.toLowerCase().match(/^[0-9]/i));
+      render_args.description = "a number";
+    }
+    else{
+      render_args.pads = pads.filter((pad)=> pad.toLowerCase().startsWith(letter.toLowerCase()));
+      render_args.description = "the letter " + letter;
+    }
+
+    res.send( eejs.require("ep_list_pads/templates/pads.html", render_args) );
   });
 };
+
+
+/*
+    async.waterfall([
+      async.forEach(pads.padIDs, function(padID, callback) {
+        // handle numbers first IE 2014Monday PadIds
+        if(letter === "hash"){
+          var i = 0
+          while(i<10){
+            if(padID[0] == i){
+              data.push(padID);
+            }
+            i++;
+          }
+        }else{
+          if(padID[0] == letter || padID[0] == letter.toUpperCase()){
+            data.push(padID);
+          }
+        }
+      });
+      callback();
+    },
+    function(callback){
+      callback();
+    }
+
+    ]);
+*/
 

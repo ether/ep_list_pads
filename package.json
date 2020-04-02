@@ -1,6 +1,6 @@
 {
   "name": "ep_list_pads",
-  "version": "0.0.4",
+  "version": "0.1.0",
   "description": "List Pads on the Index Page",
   "author": {
     "name": "John McLear",
@@ -18,4 +18,3 @@
    "url"  : "https://github.com/JohnMcLear/ep_list_pads.git"
   }
 }
-  
