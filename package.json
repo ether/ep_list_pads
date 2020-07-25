@@ -1,6 +1,6 @@
 {
   "name": "ep_list_pads",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "List Pads on the Index Page",
   "author": {
     "name": "John McLear",
@@ -10,11 +10,11 @@
   "dependencies": {
     "regexp-quote": "*"
   },
-  "peerDependencies":{
-    "ep_public_view":"*"
+  "peerDependencies": {
+    "ep_public_view": "*"
   },
-  "repository" : {
-   "type" : "git",
-   "url"  : "https://github.com/JohnMcLear/ep_list_pads.git"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JohnMcLear/ep_list_pads.git"
   }
 }
