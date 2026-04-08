@@ -1,6 +1,6 @@
 {
   "name": "ep_list_pads",
-  "version": "0.1.31",
+  "version": "0.1.32",
   "description": "List Pads on the Index Page",
   "author": {
     "name": "John McLear",
@@ -21,7 +21,7 @@
   "devDependencies": {
     "eslint": "^8.57.1",
     "eslint-config-etherpad": "^4.0.4",
-    "typescript": "^6.0.2"
+    "typescript": "^5.9.3"
   },
   "scripts": {
     "lint": "eslint .",
