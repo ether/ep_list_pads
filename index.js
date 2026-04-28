@@ -9,7 +9,11 @@ exports.eejsBlock_indexWrapper = (hookName, args, cb) => {
 };
 
 exports.registerRoute = (hookName, args, cb) => {
-  args.app.get('/list/:letter(*)', async (req, res) => {
+  // Express 5 / path-to-regexp v6 doesn't accept the legacy `:letter(*)`
+  // capture syntax. Use a regex route and copy the unnamed group into
+  // req.params.letter so the rest of the handler is unchanged.
+  args.app.get(/^\/list\/(.+)$/, async (req, res) => {
+    req.params.letter = req.params[0];
     const letter = req.params.letter.toLowerCase();
     let pads = await padManager.listAllPads();
     pads = pads.padIDs;
