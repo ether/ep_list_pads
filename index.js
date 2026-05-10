@@ -1,12 +1,12 @@
 'use strict';
 
+const {template} = require('ep_plugin_helpers');
+
 const eejs = require('ep_etherpad-lite/node/eejs/');
 const padManager = require('ep_etherpad-lite/node/db/PadManager');
 
-exports.eejsBlock_indexWrapper = (hookName, args, cb) => {
-  args.content += eejs.require('ep_list_pads/templates/letters.ejs');
-  return cb();
-};
+exports.eejsBlock_indexWrapper =
+    template('ep_list_pads/templates/letters.ejs');
 
 exports.registerRoute = (hookName, args, cb) => {
   // Express 5 / path-to-regexp v6 doesn't accept the legacy `:letter(*)`
