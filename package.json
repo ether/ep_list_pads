@@ -8,6 +8,7 @@
     "url": "http://mclear.co.uk"
   },
   "dependencies": {
+    "ep_plugin_helpers": "^0.5.0",
     "regexp-quote": "^0.0.0"
   },
   "repository": {
